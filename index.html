@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高雄中學116屆科學班成果發表 - Labyrinthine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Tektur&family=Zen+Kurenaido&display=swap" rel="stylesheet" />
+    <style>
+        html { scroll-behavior: smooth; }
+        body { margin: 0; overflow-x: hidden; }
+        .star-text {
+            text-shadow: 0 0 5px #e7ce85, 0 0 10px #ffc53e, 0 0 20px #ffa200;
+            color: rgb(255, 239, 214);
+            letter-spacing: 0.1em;
+        }
+        /* 模式切換的淡入動畫 */
+        .mode-fade {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .explore-item:hover .blur-glow {
+            filter: blur(15px);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-amber-200 font-sans">
+    <canvas id="bg-canvas" class="fixed inset-0 z-[-1] bg-slate-900"></canvas>
+
+    <section id="mode-landing" class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <div class="mode-fade">
+            <h1 class="text-5xl md:text-8xl mb-4 font-['Megrim'] star-text">Labyrinthine</h1>
+            <p class="text-xl tracking-[0.5em] mb-12 text-amber-100/80">高雄中學 116 屆科學班成果發表</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="switchMode('intro')"class="inline-block mx-24 mt-10 px-8 py-3 border border-amber-200 hover:bg-amber-200 hover:text-slate-900 transition duration-500 tracking-widest hover:-translate-y-2 cursor-pointer w-auto">
+                    進入成發簡介
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main id="mode-intro" class="hidden mode-fade">
+        <nav class="fixed w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-amber-100/20 p-4">
+            <div class="max-w-6xl mx-auto flex justify-between items-center">
+                <div onclick="switchMode('landing')" class="text-2xl cursor-pointer star-text font-['Megrim']">Labyrinthine</div>
+                <div class="hidden md:flex space-x-8 text-sm">
+                    <a href="#home" class="hover:text-white transition">首頁</a>
+                    <a href="#works" class="hover:text-white transition">專題</a>
+                    <a href="#merch" class="hover:text-white transition">周邊介紹</a>
+                    <a href="#member" class="hover:text-white transition">成員</a>
+                    <a href="#contact" class="hover:text-white transition">聯絡我們</a>
+                </div>
+            </div>
+            <button class="absolute top-4 right-4 block md:hidden focus:outline-none" id="menu-btn">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <div id="mobile-menu" class="hidden md:hidden bg-gray-700 text-white p-4 space-y-2">
+                <a href="#home" class="menu-link block ">首頁</a>
+                <a href="#works" class="menu-link block ">專題</a>
+                <a href="#merch" class="menu-link block ">周邊介紹</a>
+                <a href="#member" class="menu-link block ">成員</a>
+                <a href="#contact" class="menu-link block ">聯絡我們</a>
+            </div>
+        </nav>
+
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center pt-20 bg-slate-950/50">
+            <h1 class="text-4xl mt-12 mb-12 font-['Zen_Kurenaido'] text-amber-200">活動資訊</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-10 text-center">
+                <div class="p-2 border-l-2 border-amber-200 ">
+                    <h3 class="text-gray-200 text-sm font-['Tektur']">DATE</h3>
+                    <p class="text-xl">2026 / 09 / ??</p>
+                </div>
+                <div class="p-2 border-l-2 border-amber-200">
+                    <h3 class="text-gray-200 text-sm font-['Tektur']">TIME</h3>
+                    <p class="text-xl">???</p>
+                </div>
+                <div class="p-2 border-l-2 border-amber-200">
+                    <h3 class="text-gray-200 text-sm font-['Tektur']">LOCATION</h3>
+                    <p class="text-xl">高雄中學演奏廳</p>
+                </div>
+            </div>
+            
+            <h1 class="text-4xl mb-12 mt-12 font-['Zen_Kurenaido']  ">關於</h1>
+            <div class="border border-amber-200 bg-amber-300/20 px-8 py-4 max-w-4xl mx-8 rounded-2xl">
+                <p class="text-white font-['Zen_Kurenaido']">
+                    像迷宮一樣的、複雜曲折的。 專題研究的這條道路上，複雜曲折如同迷宮一樣，也像在科學班的我們，有點迷茫、有點無措，卻也慢慢找出自己的一條路。...
+                </p>
+            </div>
+
+            <h1 class="text-4xl mb-12 mt-12 font-['Zen_Kurenaido']">倒數</h1>
+            <div>
+                <p id="countdown" class=" text-2xl md:text-4xl font-['Zen_Kurenaido'] star-text"></p>
+            </div>
+
+            <h1 class="text-4xl mb-12 mt-12 font-['Zen_Kurenaido']">流程表</h1>
+            <div class="max-w-2xl mx-auto p-6 bg-gray-900 rounded-xl shadow-xl text-white border border-amber-200">
+                <div class="space-y-3">
+    
+                    <div class="flex items-start p-3 rounded-lg ">
+                        <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">???</div>
+                        <div class="text-gray-200 ">貴賓進場</div>
+                    </div>
+
+                    <div class="flex items-start p-3 rounded-lg ">
+                        <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">???</div>
+                        <div class="text-gray-200">開場</div>
+                    </div>
+
+                    <div class="flex items-start p-3 rounded-lg ">
+                    <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">???</div>
+                        <div class="text-gray-200 space-y-1">
+                        <p>報告</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start  p-3 rounded-lg  ">
+                        <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">???</div>
+                        <div class="text-white font-medium">中場</div>
+                    </div>
+
+                    <div class="flex items-start  p-3  rounded-lg ">
+                        <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">???</div>
+                        <div class="text-gray-200 font-medium text-white">報告</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="py-24 bg-slate-950/50">
+            <div class="max-w-6xl mx-auto px-6">
+                <h2 class="text-4xl font-['Zen_Kurenaido'] mb-12 text-center  max-w-4xl mx-auto">專題研究成果</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div onclick="enterRoom('math')" class="group cursor-pointer bg-sky-300/20 border border-sky-200/70 p-8 hover:bg-sky-300/30 transition hover:-translate-y-2 duration-500 transition">
+                        <span class="font-['Tektur'] text-4 text-sky-400">MATH</span>
+                        <h3 class="text-2xl text-sky-200 mt-2 font-['Zen_Kurenaido']">數學</h3>
+                        <p class="mt-4 text-sm text-gray-300">點擊查看更多...</p>
+                    </div>
+
+                    <div onclick="enterRoom('physics')" class="group cursor-pointer bg-amber-300/20 border border-amber-200/70 p-8 hover:bg-amber-300/30 transition hover:-translate-y-2 duration-500 transition">
+                        <span class="font-['Tektur'] text-4 text-amber-400">PHYSICS</span>
+                        <h3 class="text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido']">物理</h3>
+                        <p class="mt-4 text-sm text-gray-300">點擊查看更多...</p>
+                    </div>
+
+                     <div onclick="enterRoom('chemistry')" class="group cursor-pointer bg-purple-300/20 border border-purple-200/70 p-8 hover:bg-purple-300/30 transition hover:-translate-y-2 duration-500 transition">
+                        <span class="font-['Tektur'] text-4 text-purple-400">CHEMISTRY</span>
+                        <h3 class="text-2xl text-purple-200 mt-2 font-['Zen_Kurenaido']">化學</h3>
+                        <p class="mt-4 text-sm text-gray-300">點擊查看更多...</p>
+                    </div>
+
+                    <div onclick="enterRoom('biology')" class="group cursor-pointer bg-green-300/20 border border-green-200/70 p-8 hover:bg-green-300/30 transition hover:-translate-y-2 duration-500 transition">
+                        <span class="font-['Tektur'] text-4 text-green-300">BIOLOGY</span>
+                        <h3 class="text-2xl text-green-200 mt-2 font-['Zen_Kurenaido']">生物</h3>
+                        <p class="mt-4 text-sm text-gray-300">點擊查看更多...</p>
+                    </div>
+
+                    <div onclick="enterRoom('earth_science')" class="group cursor-pointer bg-orange-300/20 border border-orange-200/70 p-8 hover:bg-orange-300/30 transition hover:-translate-y-2 duration-500 transition">
+                        <span class="font-['Tektur'] text-4 text-orange-400">EARTH SCIENCE</span>
+                        <h3 class="text-2xl text-orange-200 mt-2 font-['Zen_Kurenaido']">地球科學</h3>
+                        <p class="mt-4 text-sm text-gray-300">點擊查看更多...</p>
+                    </div>
+
+                    <div onclick="enterRoom('computer_science')" class="group cursor-pointer bg-zinc-300/20 border border-zinc-200/70 p-8 hover:bg-zinc-300/30 transition hover:-translate-y-2 duration-500 transition">
+                        <span class="font-['Tektur'] text-4 text-zinc-300">COMPUTER SCIENCE</span>
+                        <h3 class="text-2xl text-zinc-200 mt-2 font-['Zen_Kurenaido']">資訊科學</h3>
+                        <p class="mt-4 text-sm text-gray-300">點擊查看更多...</p>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-4xl mb-12 mt-12 font-['Zen_Kurenaido'] text-center  ">影片</h1>
+        </section>
+
+        <section id="merch" class="py-24 bg-slate-950/50">
+            <div class="max-w-6xl mx-auto px-6"></div>
+            <h2 class="text-4xl  mb-12 font-['Zen_Kurenaido'] text-center  max-w-4xl mx-auto">周邊商品</h2>
+            <div class="mx-4">
+                <div class="grid grid-cols-1  md:grid-cols-3 gap-8">
+                    <div class="group cursor-pointer rounded-xl text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido'] bg-amber-300/20 border border-amber-200/70 p-8 hover:text-white hover:bg-white/30 hover:border-white transition hover:-translate-y-2 duration-500 transition">
+                        衣服
+                        <div x-data="carousel(['img/badge.jpg','img/bag.jpg','img/tshirt.jpg'])">
+                            <div class="mt-4 relative group overflow-hidden rounded-xl border border-amber-200/70 shadow-lg group-hover:border-white transition">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <div x-show="activeSlide === index + 1">
+                                        <img :src="image"
+                                        class="w-full h-full object-cover">
+                                    </div>
+                                </template>
+
+                                <button @click="prev()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+
+                                <button @click="next()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="group flex justify-center space-x-2 mt-2">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <button @click="activeSlide = index + 1"
+                                            :class="activeSlide === index + 1? 'bg-amber-200 w-6': 'bg-amber-200/30 w-2'"class="h-2 rounded-full transition-all"></button>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer rounded-xl text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido'] bg-amber-300/20 border border-amber-200/70 p-8 hover:text-white hover:bg-white/30 hover:border-white transition hover:-translate-y-2 duration-500 transition">
+                        壓克力吊飾
+                        <div x-data="carousel(['img/badge.jpg','img/bag.jpg','img/tshirt.jpg'])">
+                            <div class="mt-4 relative group overflow-hidden rounded-xl border border-amber-200/70 shadow-lg group-hover:border-white transition">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <div x-show="activeSlide === index + 1">
+                                        <img :src="image"
+                                        class="w-full h-full object-cover">
+                                    </div>
+                                </template>
+
+                                <button @click="prev()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+
+                                <button @click="next()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="group flex justify-center space-x-2 mt-2">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <button @click="activeSlide = index + 1"
+                                            :class="activeSlide === index + 1? 'bg-amber-200 w-6': 'bg-amber-200/30 w-2'"class="h-2 rounded-full transition-all"></button>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group cursor-pointer rounded-xl text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido'] bg-amber-300/20 border border-amber-200/70 p-8 hover:text-white hover:bg-white/30 hover:border-white transition hover:-translate-y-2 duration-500 transition">
+                        金屬徽章
+                        <div x-data="carousel(['img/badge.jpg','img/bag.jpg','img/tshirt.jpg'])">
+                            <div class="mt-4 relative group overflow-hidden rounded-xl border border-amber-200/70 shadow-lg group-hover:border-white transition">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <div x-show="activeSlide === index + 1">
+                                        <img :src="image"
+                                        class="w-full h-full object-cover">
+                                    </div>
+                                </template>
+
+                                <button @click="prev()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+
+                                <button @click="next()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="group flex justify-center space-x-2 mt-2">
+                                <template x-for="(image, index) in images" :key="index">
+                                    <button @click="activeSlide = index + 1"
+                                            :class="activeSlide === index + 1? 'bg-amber-200 w-6': 'bg-amber-200/30 w-2'"class="h-2 rounded-full transition-all"></button>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="member" class="py-24 bg-slate-950/50">
+            <div class="max-w-6xl mx-auto px-6"></div>
+            <h2 class="text-4xl mb-12 font-['Zen_Kurenaido'] text-center  max-w-4xl mx-auto">關於我們</h2>
+
+            <div class="mx-8 md:mx-16 border-l-4 border-amber-200">
+                <p class="text-amber-200 pl-4">總召</p>
+                <div class="ml-4 flex flex-wrap gap-x-4 gap-y-2 text-white">
+                <span>朱春珠</span>
+                <span>鄭羽珊</span>
+                </div>
+            </div>
+
+            <div class=" mx-8 md:mx-16 my-4 border-l-4 border-amber-200 ">
+                <p class="text-amber-200 pl-4 ">活動-影片</p>
+                <div class="ml-4 flex flex-wrap gap-x-4 gap-y-2 text-white">
+                <span>余偲弘</span>
+                <span>周奕豪</span>
+                <span>胡佑丞</span>
+                <span>高昀昊</span>
+                <span>陳宥霖</span>
+                <span>陳昱綸</span>
+                <span>黃示宥</span>
+                <span>黃郅凱</span>
+                <span>葉迦文</span>
+                <span>蔡覲宇</span>
+                </div>
+            </div>
+
+            <div class="mx-8 md:mx-16 my-4 border-l-4 border-amber-200">
+                <p class="text-amber-200 pl-4">活動-中場</p>
+                <div class="ml-4 flex flex-wrap gap-x-4 gap-y-2 text-white">
+                <span>施子閎</span>
+                <span>張宸睿</span>
+                <span>曾宇凡</span>
+                <span>歐宸睿</span>
+                <span>蔡振曄</span>
+                <span>蔡鎔宇</span>
+                <span>鄭冠禹</span>
+                <span>謝宗穎</span>
+                </div>
+            </div>
+            
+            <div class="mx-8 md:mx-16 my-4 border-l-4 border-amber-200">
+                <p class="text-amber-200 pl-4">公關</p>
+                <div class="ml-4 flex flex-wrap gap-x-4 gap-y-2 text-white">
+                <span>許超順</span>
+                <span>黃子倢</span>
+                <span>葉承宇</span>
+                </div>
+            </div>
+
+            <div class="mx-8 md:mx-16 my-4 border-l-4 border-amber-200">
+                <p class="text-amber-200 pl-4">總務</p>
+                <div class="ml-4 flex flex-wrap gap-x-4 gap-y-2 text-white">
+                <span>顧康禾</span>
+                </div>
+            </div>
+            
+            <div class="mx-8 md:mx-16 my-4 border-l-4 border-amber-200">
+                <p class="text-amber-200 pl-4">美宣</p>
+                <div class="ml-4 flex flex-wrap gap-x-4 gap-y-2 text-white">
+                <span>王奕涵</span>
+                <span>許若亞</span>
+                <span>陳妍菲</span>
+                <span>黃莞蘋</span>
+                <span>蔡宇涵</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 bg-slate-950/50">
+            <h2 class="text-4xl mb-12 font-['Zen_Kurenaido'] text-center  max-w-4xl mx-auto">聯絡我們</h2>
+                <a href="https://www.instagram.com/labyrinthine_kshs_116th/" target="_blank"
+                    class="block cursor-pointer bg-amber-300/20 font-['Tektur'] text-amber-200 border border-l-4 border-amber-200 p-8 mx-8 md:mx-auto text-center md:max-w-lg hover:bg-zinc-200/30 hover:border-white hover:text-white transition hover:-translate-y-2 duration-500">
+                    instagram
+                </a>
+        </section>
+
+        <footer id="contact" class="py-6 border-t border-white/30 bg-slate-900 font-['Tektur'] text-center text-black-500 text-sm">
+            <p>© 2026 LABYRINTHINE. All Rights Reserved.</p>
+        </footer>
+    </main>
+
+
+    <section id="mode-room" class="hidden fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-xl overflow-y-auto mode-fade">
+        <div class="max-w-4xl mx-auto py-20 px-8 relative">
+            <button onclick="exitRoom()" class="fixed top-10 right-10 text-white text-xl hover:text-amber-200 transition">✕ 關閉</button>
+            <div id="room-content">
+                </div>
+        </div>
+    </section>
+
+    <script>
+        function carousel(images) {
+
+            return {
+                activeSlide: 1,
+                images,
+                get totalSlides() {
+                return this.images.length
+                },
+                next() {
+                this.activeSlide =this.activeSlide === this.totalSlides? 1: this.activeSlide + 1
+                },
+                prev() {
+                this.activeSlide =this.activeSlide === 1? this.totalSlides: this.activeSlide - 1
+                }
+            }
+        }
+    </script>
+
+    <script>
+        const targetDate = new Date("2026-09-05 16:00:00").getTime();
+
+        function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        //要測試還沒測
+        if (diff <= 0) {
+            document.getElementById("countdown").innerHTML = "活動開始！";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("countdown").innerHTML =
+            `${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+
+    <script>
+       function createConstellationRipple(x, y) {
+    const fragmentCount = 8; // 每次點擊產生的碎片數量
+    
+    // 定義所有可能的形狀樣式 (Tailwind class)
+    const shapeStyles = [
+        "rounded-full border border-amber-200", // 圓圈
+        "rounded-full bg-amber-200", // 圓圈
+        "rounded-full border border-zinc-200", // 圓圈
+        "rotate-45 border border-zinc-300",    // 菱形
+        "bg-zinc-200",
+        "w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[18px] border-b-amber-200", // 三角形
+        "bg-zinc-200 w-4 h-[1px]",             // 短線
+    ];
+
+    for (let i = 0; i < fragmentCount; i++) {
+        const frag = document.createElement('div');
+        
+        // 基礎設定：絕對定位且不擋滑鼠
+        frag.className = 'fixed pointer-events-none z-[100] transition-opacity duration-500';
+        
+        // 隨機選一個形狀
+        const randomShape = shapeStyles[Math.floor(Math.random() * shapeStyles.length)];
+        
+        // 如果是三角形，我們不設定寬高，否則設定隨機大小
+        const isTriangle = randomShape.includes('border-b');
+        const size = Math.random() * 20 + 10; // 10px ~ 30px
+        
+        if (!isTriangle) {
+            frag.style.width = `${size}px`;
+            frag.style.height = randomShape.includes('h-[1px]') ? '1px' : `${size}px`;
+        }
+        
+        // 將形狀 class 塞進去
+        frag.className += ` ${randomShape}`;
+
+        // 初始位置
+        frag.style.left = `${x}px`;
+        frag.style.top = `${y}px`;
+        
+        document.body.appendChild(frag);
+
+        // --- 爆炸物理邏輯 ---
+        const angle = Math.random() * Math.PI * 2; // 隨機 360 度
+        const velocity = Math.random() * 2;    // 隨機噴射速度
+        const rotateSpeed = (Math.random() - 0.5) * 7; // 隨機自轉速度
+        
+        let curX = x;
+        let curY = y;
+        let curRotate = 0;
+        let opacity = 1;
+
+        const animation = setInterval(() => {
+            curX += Math.cos(angle) * velocity;
+            curY += Math.sin(angle) * velocity;
+            curRotate += rotateSpeed;
+            opacity -= 0.01; // 消失速度
+
+            frag.style.left = `${curX}px`;
+            frag.style.top = `${curY}px`;
+            frag.style.transform = `rotate(${curRotate}deg)`;
+            frag.style.opacity = opacity;
+
+            if (opacity <= -0.1) {
+                clearInterval(animation);
+                frag.remove();
+            }
+        }, 16);
+    }
+    }
+    // 加入這段：監聽全螢幕的點擊事件
+    window.addEventListener('click', (e) => {
+    // 當點擊發生時，執行你寫好的那個函式
+    // e.clientX 和 e.clientY 會抓到你滑鼠點擊的座標
+    createConstellationRipple(e.clientX, e.clientY);
+    });
+    </script>
+
+    <script>
+        // --- 背景星空邏輯 (保留並修正) ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+        const DOT_DENSITY = 0.00025; // 每平方像素幾個點
+        const DOT_COUNT = Math.floor(window.innerWidth * window.innerHeight * DOT_DENSITY);
+        const CONNECTION_DIST = 120;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Dot {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.radius = Math.random() * 1.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 210, 170, 1)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < DOT_COUNT; i++) dots.push(new Dot());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.forEach((dot, i) => {
+                dot.update();
+                dot.draw();
+                for (let j = i + 1; j < dots.length; j++) {
+                    const dx = dot.x - dots[j].x;
+                    const dy = dot.y - dots[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < CONNECTION_DIST) {
+                        ctx.beginPath();
+                        ctx.moveTo(dot.x, dot.y);
+                        ctx.lineTo(dots[j].x, dots[j].y);
+                        ctx.strokeStyle = `rgba(255, 210, 170, ${0.5 * (1 - dist / CONNECTION_DIST)})`;
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- 核心模式切換邏輯 ---
+        let currentMode = 'landing';
+        let previousMode = 'landing';
+
+        function switchMode(modeName) {
+            previousMode = currentMode;
+            const modes = ['mode-landing', 'mode-intro', 'mode-room'];
+            modes.forEach(m => document.getElementById(m).classList.add('hidden'));
+            
+            document.getElementById(`mode-${modeName}`).classList.remove('hidden');
+            currentMode = modeName;
+
+            // 處理捲動軸
+            if (modeName === 'intro' || modeName === 'landing') {
+                document.body.style.overflow = 'auto';
+            } else {
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        // --- 房間進入邏輯 ---
+        const roomData = {
+            'math': {
+                title: '數學專題',
+                color: 'sky',
+                glow: '186, 230, 253',
+                content: `
+                    <div class="space-y-8" x-data="{ currentView: 'list' }">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
+                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-sky-400 font-['Tektur']">Math I</h4>
+                                <p class="text-lg text-sky-200 mb-2">從骰子問題到Levine帽子謎題</p>
+                                <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：胡佑承 曾宇凡<br>指導老師：朱建鑫</div>
+                                <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt2'">
+                                <h4 class="text-sky-400 font-['Tektur']">Math II</h4>
+                                <p class="text-lg text-sky-200 mb-2">北歐圖中最小上坡路徑數之探究</p>
+                                <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：周奕豪 陳昱綸 歐辰睿<br>指導老師：朱建鑫</div>
+                                <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt3'">
+                                <h4 class="text-sky-400 font-['Tektur']">Math II</h4>
+                                <p class="text-lg text-sky-200 mb-2">傑利蠑螈數學建模</p>
+                                <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：葉迦文 蔡振曄 蔡覲宇<br>指導老師：朱建鑫</div>
+                                <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                        </div>
+                        <div x-show="currentView !== 'list'" style="display: none;" x-transition>
+                            <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-sky-500/10 border border-sky-400/50 text-sky-200 hover:bg-sky-500/30 transition rounded flex items-center gap-2" @click="currentView = 'list'">← 返回列表</button>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a :href="currentView === 'ppt1' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : (currentView === 'ppt2' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : 'https://forms.gle/Wp8FVL1uZz81wHQC9')" 
+                                        target="_blank" 
+                                        class="px-4 py-2 bg-blue-500/10 border border-blue-400/50 text-blue-200 hover:bg-blue-500/30 transition rounded flex items-center gap-2">
+                                        看完提問 / 回饋 ↗
+                                    </a>
+                                </div>
+                            <div class="w-full h-[65vh] border border-sky-200 bg-slate-900 rounded overflow-hidden shadow-lg">
+                                <template x-if="currentView === 'ppt1'"><iframe src="img/math1.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt2'"><iframe src="img/math2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt3'"><iframe src="img/math3.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            
+            'physics': {
+                title: '物理專題',
+                color: 'amber',
+                glow: '253, 230, 138',
+                content: `
+                    <div class="space-y-8" x-data="{ currentView: 'list' }">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
+                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-amber-400 font-['Tektur']">Physics I</h4>
+                                <p class="text-lg text-amber-200 mb-2">探討磁鐵在線圈內的阻尼震盪</p>
+                                <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：郭丞哲 葉承宇 蔡宇涵<br>指導老師：林松鶴</div>
+                                <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt2'">
+                                <h4 class="text-amber-400 font-['Tektur']">Physics II</h4>
+                                <p class="text-lg text-amber-200 mb-2">義載金城-探討義大利麵之承載效率</p>
+                                <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：余偲弘 陳宥霖 黃示宥<br>指導老師：林松鶴</div>
+                                <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt3'">
+                                <h4 class="text-amber-400 font-['Tektur']">Physics II</h4>
+                                <p class="text-lg text-amber-200 mb-2">無引擎動力船之設計與優化</p>
+                                <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：許超順 黃莞蘋<br>指導老師：林松鶴 高執貴</div>
+                                <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                        </div>
+                        <div x-show="currentView !== 'list'" style="display: none;" x-transition>
+                            <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-amber-500/10 border border-amber-400/50 text-amber-200 hover:bg-amber-500/30 transition rounded flex items-center gap-2" @click="currentView = 'list'">← 返回列表</button>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a :href="currentView === 'ppt1' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : (currentView === 'ppt2' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : 'https://forms.gle/Wp8FVL1uZz81wHQC9')" 
+                                        target="_blank" 
+                                        class="px-4 py-2 bg-amber-500/10 border border-amber-400/50 text-amber-200 hover:bg-amber-500/30 transition rounded flex items-center gap-2">
+                                        看完提問 / 回饋 ↗
+                                    </a>
+                                </div>
+                            <div class="w-full h-[65vh] border border-amber-200 bg-slate-900 rounded overflow-hidden shadow-lg">
+                                <template x-if="currentView === 'ppt1'"><iframe src="ppt/.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt2'"><iframe src="img/physics2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt3'"><iframe src="ppt/無引擎動力船的設計與優化.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            'chemistry': {
+                title: '化學專題',
+                color: 'purple',
+                glow: '233, 213, 255',
+                content: `
+                    <div class="space-y-8" x-data="{ currentView: 'list' }">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
+                            <div class="p-6 bg-white/5 border border-purple-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-purple-400 font-['Tektur']">Chemistry I</h4>
+                                <p class="text-lg text-purple-200 mb-2">黑箱作業-以自製Arduino檢測模組探討化學反應動力學</p>
+                                <div class="text-white border-l-2 border-purple-200 px-4 mb-4">作者：張宸睿 黃郅凱 顧康禾<br>指導老師：陳藝菁</div>
+                                <span class="text-xs text-purple-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-purple-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt2'">
+                                <h4 class="text-purple-400 font-['Tektur']">Chemistry II</h4>
+                                <p class="text-lg text-purple-200 mb-2">芹有獨鍾?芹菜素特性之探討</p>
+                                <div class="text-white border-l-2 border-purple-200 px-4 mb-4">作者：王奕涵<br>指導老師：陳藝菁</div>
+                                <span class="text-xs text-purple-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                        </div>
+                        <div x-show="currentView !== 'list'" style="display: none;" x-transition>
+                            <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-purple-500/10 border border-purple-400/50 text-purple-200 hover:bg-purple-500/30 transition rounded flex items-center gap-2" @click="currentView = 'list'">← 返回列表</button>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a :href="currentView === 'ppt1' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : 'https://forms.gle/Wp8FVL1uZz81wHQC9')" 
+                                        target="_blank" 
+                                        class="px-4 py-2 bg-purple-500/10 border border-purple-400/50 text-purple-200 hover:bg-purple-500/30 transition rounded flex items-center gap-2">
+                                        看完提問 / 回饋 ↗
+                                    </a>
+                                </div>
+                            <div class="w-full h-[65vh] border border-purple-200 bg-slate-900 rounded overflow-hidden shadow-lg">
+                                <template x-if="currentView === 'ppt1'"><iframe src="img/chem1.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt2'"><iframe src="img/chem2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            'biology': {
+                title: '生物專題',
+                color: 'green',
+                glow: '187, 247, 208',
+                content: `
+                    <div class="space-y-8" x-data="{ currentView: 'list' }">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
+                            <div class="p-6 bg-white/5 border border-green-200 cursor-pointer hover:bg-green-400/10 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-green-400 font-['Tektur']">Biology I</h4>
+                                <p class="text-lg text-green-200 mb-2">探討慢生根瘤菌與固氮螺旋菌對植物生長的影響</p>
+                                <div class="text-white border-l-2 border-green-200 px-4 mb-4">作者：陳妍菲 鄭冠禹<br>指導老師：李靜怡</div>
+                                <span class="text-xs text-green-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-green-200 cursor-pointer hover:bg-green-400/10 transition" @click="currentView = 'ppt2'">
+                                <h4 class="text-green-400 font-['Tektur']">Biology II</h4>
+                                <p class="text-lg text-green-200 mb-2">探討化學肥料對蚯蚓生理之影響</p>
+                                <div class="text-white border-l-2 border-green-200 px-4 mb-4">作者：許若亞 鄭羽珊<br>指導老師：李靜怡</div>
+                                <span class="text-xs text-green-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                        </div>
+                        <div x-show="currentView !== 'list'" style="display: none;" x-transition>
+                            <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-green-500/10 border border-green-400/50 text-green-200 hover:bg-green-500/30 transition rounded flex items-center gap-2" @click="currentView = 'list'">← 返回列表</button>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a :href="currentView === 'ppt1' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : 'https://forms.gle/Wp8FVL1uZz81wHQC9')" 
+                                        target="_blank" 
+                                        class="px-4 py-2 bg-green-500/10 border border-green-400/50 text-green-200 hover:bg-green-500/30 transition rounded flex items-center gap-2">
+                                        看完提問 / 回饋 ↗
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full h-[65vh] border border-green-200 bg-slate-900 rounded overflow-hidden shadow-lg">
+                                <template x-if="currentView === 'ppt1'"><iframe src="img/bio1.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt2'"><iframe src="img/bio2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            'earth_science': {
+                title: '地球科學專題',
+                color: 'orange',
+                glow: '253, 195, 150',
+                content: `
+                    <div class="space-y-8" x-data="{ currentView: 'list' }">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
+                            <div class="p-6 bg-white/5 border border-orange-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-orange-400 font-['Tektur']">Earth Science I</h4>
+                                <p class="text-lg text-orange-200 mb-2">熱不可支-分析日本海洋熱浪之趨勢與成因</p>
+                                <div class="text-white border-l-2 border-orange-200 px-4 mb-4">作者：施子閎 黃子倢<br>指導老師：鄭凌韻</div>
+                                <span class="text-xs text-orange-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                        </div>
+                        <div x-show="currentView !== 'list'" style="display: none;" x-transition>
+                            <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-orange-500/10 border border-orange-400/50 text-orange-200 hover:bg-orange-500/30 transition rounded flex items-center gap-2" @click="currentView = 'list'">← 返回列表</button>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a :href="currentView === 'ppt1' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9'" 
+                                        target="_blank" 
+                                        class="px-4 py-2 bg-orange-500/10 border border-orange-400/50 text-orange-200 hover:bg-orange-500/30 transition rounded flex items-center gap-2">
+                                        看完提問 / 回饋 ↗
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full h-[65vh] border border-orange-200 bg-slate-900 rounded overflow-hidden shadow-lg">
+                                <template x-if="currentView === 'ppt1'"><iframe src="img/earth1.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            'computer_science': {
+                title: '資訊科學專題',
+                color: 'zinc',
+                glow: '240, 240, 240',
+                content: `
+                    <div class="space-y-8" x-data="{ currentView: 'list' }">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
+                            <div class="p-6 bg-white/5 border border-zinc-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-zinc-400 font-['Tektur']">ComputerScience I</h4>
+                                <p class="text-lg text-zinc-200 mb-2">變異規則數字炸彈的最優策略之研究</p>
+                                <div class="text-white border-l-2 border-zinc-200 px-4 mb-4">作者：高昀昊 蔡鎔宇 謝宗穎<br>指導老師：李青育</div>
+                                <span class="text-xs text-zinc-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-zinc-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt2'">
+                                <h4 class="text-zinc-400 font-['Tektur']">ComputerScience II</h4>
+                                <p class="text-lg text-zinc-200 mb-2 text-sm md:text-lg">跨語系骨架式手語辨識系統之設計與實作-使用ST-GCN雙階段語系與詞彙分類模型</p>
+                                <div class="text-white border-l-2 border-zinc-200 px-4 mb-4">作者：朱春珠<br>指導老師：李青育 盧正良</div>
+                                <span class="text-xs text-zinc-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                        </div>
+                        <div x-show="currentView !== 'list'" style="display: none;" x-transition>
+                            <div class="flex items-center justify-between mb-6 flex-wrap gap-2">
+                                <button class="px-4 py-2 bg-zinc-500/10 border border-zinc-400/50 text-zinc-200 hover:bg-zinc-500/30 transition rounded flex items-center gap-2" @click="currentView = 'list'">← 返回列表</button>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <a :href="currentView === 'ppt1' ? 'https://forms.gle/Wp8FVL1uZz81wHQC9' : 'https://forms.gle/Wp8FVL1uZz81wHQC9')" 
+                                        target="_blank" 
+                                        class="px-4 py-2 bg-zinc-500/10 border border-zinc-400/50 text-zinc-200 hover:bg-zinc-500/30 transition rounded flex items-center gap-2">
+                                        看完提問 / 回饋 ↗
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full h-[65vh] border border-zinc-200 bg-slate-900 rounded overflow-hidden shadow-lg">
+                                <template x-if="currentView === 'ppt1'"><iframe src="img/cs1.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt2'"><iframe src="img/cs2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        let savedScrollPosition = 0;
+        function enterRoom(subject) {
+            const data = roomData[subject];
+            if (!data) return;
+
+            // 紀錄當前位置
+            savedScrollPosition = window.scrollY;
+
+            const roomContent = document.getElementById('room-content');
+
+            const c = data.color; 
+            const g = data.glow;
+
+            roomContent.innerHTML = `
+                <p class="font-['Tektur'] text-${c}-500 tracking-[0.3em] mb-4">
+                    SUBJECT: ${subject.toUpperCase()}
+                </p>
+
+                <h1 id="room-title" class="text-3xl md:text-4xl font-['Zen_Kurenaido'] mb-4">
+                ${data.title}
+                </h1>
+                <div class="mt-10">${data.content}</div>
+            `;
+
+            const titleElem = document.getElementById('room-title');
+            if (titleElem) {
+                titleElem.style.textShadow = `0 0 15px rgba(${g}, 0.8), 0 0 30px rgba(${g}, 0.5)`;
+                titleElem.style.color = `rgb(${g})`;
+            }
+
+            switchMode('room');
+        }
+
+        function exitRoom() {
+
+            switchMode('intro');
+
+            setTimeout(() => {
+                window.scrollTo({
+                    top: savedScrollPosition,
+                    behavior: 'auto'
+                });
+            }, 0);
+        }
+    </script>
+
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+         // 監聽按鈕點擊事件
+        btn.addEventListener('click', () => {
+        // toggle 代表：有 hidden 就拿掉（顯示），沒有 hidden 就補上（隱藏）
+        menu.classList.toggle('hidden');
+        });
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+            menu.classList.add('hidden'); // 強制補上 hidden，讓選單消失
+            });
+        });
+    </script>
+</body>
+</html>
