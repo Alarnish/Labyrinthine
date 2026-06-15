@@ -667,8 +667,9 @@
                             <div class="w-full h-[65vh] border border-amber-200 bg-slate-900 rounded overflow-hidden shadow-lg">
                                 <template x-if="currentView === 'ppt1'"><iframe src="ppt/.pdf" class="w-full h-full" allowfullscreen></iframe></template>
                                 <template x-if="currentView === 'ppt2'"><iframe src="img/physics2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
-                                <template x-if="currentView === 'ppt3'"><iframe src="ppt/無引擎動力船的設計與優化.pdf" class="w-full h-full" allowfullscreen></iframe></template>
-                            </div>
+                                <template x-if="currentView === 'ppt3'">
+                                    <iframe :src="'https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(window.location.origin + window.location.pathname.replace('index.html', '') + 'img/math3.pdf')" class="w-full h-full" allowfullscreen></iframe>
+                                </template>
                         </div>
                     </div>
                 `
@@ -887,6 +888,19 @@
             link.addEventListener('click', () => {
             menu.classList.add('hidden'); // 強制補上 hidden，讓選單消失
             });
+        });
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash;
+            if (hash && hash.includes('/')) {
+                const [_, subject, ppt] = hash.split('/');
+        
+                // 自動幫網頁找到對應的科目並切換進去
+                if (window.__alpine_state__) {
+                    window.__alpine_state__.currentSubject = subject;
+                    // 這裡可以連動內層的專題變數
+                }
+            }
         });
     </script>
 </body>
