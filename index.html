@@ -116,8 +116,20 @@
 
                     <div class="flex items-start p-3 rounded-lg ">
                     <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">13:10-14:30</div>
-                        <div class="text-gray-200 space-y-1">
+                        <div class="text-white space-y-1">
                         <p>上半場專題報告、影片、表演</p>
+                        <br><div class="text-purple-200 font-bold">化學 I </div> 
+                        黑箱作業-以自製Arduino檢測模組探討化學反應動力學
+                        <div class="text-blue-200 font-bold">數學 I</div>
+                        傑利蠑螈數學建模
+                        <div class="text-zinc-200 font-bold">資訊 I</div>
+                        變異規則數字炸彈的最優策略之研究
+                        <div class="text-amber-200 font-bold">物理 I</div>
+                        無引擎動力船的設計與優化
+                        <div class="text-green-200 font-bold">生物 I</div>
+                        探討慢生根瘤菌與固氮螺旋菌對植物生長的影響
+                        <div class="text-orange-200 font-bold">地科 I</div>
+                        熱不可支-分析日本海洋熱浪之趨勢與成因
                         </div>
                     </div>
 
@@ -128,7 +140,23 @@
 
                     <div class="flex items-start  p-3  rounded-lg ">
                         <div class="w-32 flex-shrink-0 text-amber-200 font-mono font-semibold">15:00-16:20</div>
-                        <div class="text-gray-200 font-medium text-white">下半場專題報告、影片、表演</div>
+                            <div class="text-white space-y-1">
+                            <p>下半場專題報告、影片、表演</p>
+                            <br><div class="text-blue-200 font-bold">數學 II</div>
+                            從骰子問題到Levine帽子謎題
+                            <div class="text-purple-200 font-bold">化學 II</div>
+                            芹」有獨鍾？芹菜素特性之探討
+                            <div class="text-amber-200 font-bold">物理 II</div>
+                            義載金城-探討義大利麵之承載效率
+                            <div class="text-green-200 font-bold">生物 II</div>
+                            探討化學肥料對蚯蚓生理之影響
+                            <div class="text-blue-200 font-bold">數學III</div>
+                            北歐圖中最小上坡路徑數之探究
+                            <div class="text-amber-200 font-bold">物理III</div>
+                            探討磁鐵在線圈內的阻尼振盪現象
+                            <div class="text-zinc-200 font-bold">資訊 II</div>
+                            跨語系骨架式手語辨識系統之設計與實作-使用ST-GCN之雙階段語系與詞彙分類模型
+                        </div>
                     </div>
 
                     <div class="flex items-start  p-3  rounded-lg ">
@@ -328,7 +356,6 @@
                 <span>歐宸睿</span>
                 <span>蔡振曄</span>
                 <span>蔡鎔宇</span>
-                <span>鄭冠禹</span>
                 <span>謝宗穎</span>
                 </div>
             </div>
@@ -357,6 +384,7 @@
                 <span>陳妍菲</span>
                 <span>黃莞蘋</span>
                 <span>蔡宇涵</span>
+                <span>鄭冠禹</span>
                 </div>
             </div>
         </section>
@@ -594,22 +622,22 @@
                 content: `
                     <div class="space-y-8" x-data="{ currentView: 'list' }">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
-                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt1'">
+                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt3'">
                                 <h4 class="text-sky-400 font-['Tektur']">Math I</h4>
+                                <p class="text-lg text-sky-200 mb-2">傑利蠑螈數學建模</p>
+                                <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：葉迦文 蔡振曄 蔡覲宇<br>指導老師：朱建鑫</div>
+                                <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-sky-400 font-['Tektur']">Math II</h4>
                                 <p class="text-lg text-sky-200 mb-2">從骰子問題到Levine帽子謎題</p>
                                 <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：胡佑承 曾宇凡<br>指導老師：朱建鑫</div>
                                 <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
                             </div>
                             <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt2'">
-                                <h4 class="text-sky-400 font-['Tektur']">Math II</h4>
+                                <h4 class="text-sky-400 font-['Tektur']">Math III</h4>
                                 <p class="text-lg text-sky-200 mb-2">北歐圖中最小上坡路徑數之探究</p>
                                 <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：周奕豪 陳昱綸 歐辰睿<br>指導老師：朱建鑫</div>
-                                <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
-                            </div>
-                            <div class="p-6 bg-white/5 border border-sky-200 cursor-pointer hover:bg-white/10 hover:border-sky-400 transition" @click="currentView = 'ppt3'">
-                                <h4 class="text-sky-400 font-['Tektur']">Math III</h4>
-                                <p class="text-lg text-sky-200 mb-2">傑利蠑螈數學建模</p>
-                                <div class="text-white border-l-2 border-sky-200 px-4 mb-4">作者：葉迦文 蔡振曄 蔡覲宇<br>指導老師：朱建鑫</div>
                                 <span class="text-xs text-sky-300 underline">點擊進入查看簡報 →</span>
                             </div>
                         </div>
@@ -653,22 +681,22 @@
                 content: `
                     <div class="space-y-8" x-data="{ currentView: 'list' }">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8" x-show="currentView === 'list'">
-                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt1'">
+                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt3'">
                                 <h4 class="text-amber-400 font-['Tektur']">Physics I</h4>
+                                <p class="text-lg text-amber-200 mb-2">無引擎動力船之設計與優化</p>
+                                <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：許超順 黃莞蘋<br>指導老師：林松鶴 高執貴</div>
+                                <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
+                            </div>
+                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt1'">
+                                <h4 class="text-amber-400 font-['Tektur']">Physics II</h4>
                                 <p class="text-lg text-amber-200 mb-2">探討磁鐵在線圈內的阻尼震盪</p>
                                 <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：郭丞哲 葉承宇 蔡宇涵<br>指導老師：林松鶴</div>
                                 <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
                             </div>
                             <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt2'">
-                                <h4 class="text-amber-400 font-['Tektur']">Physics II</h4>
+                                <h4 class="text-amber-400 font-['Tektur']">Physics III</h4>
                                 <p class="text-lg text-amber-200 mb-2">義載金城-探討義大利麵之承載效率</p>
                                 <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：余偲弘 陳宥霖 黃示宥<br>指導老師：林松鶴</div>
-                                <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
-                            </div>
-                            <div class="p-6 bg-white/5 border border-amber-200 cursor-pointer hover:bg-white/10 transition" @click="currentView = 'ppt3'">
-                                <h4 class="text-amber-400 font-['Tektur']">Physics III</h4>
-                                <p class="text-lg text-amber-200 mb-2">無引擎動力船之設計與優化</p>
-                                <div class="text-white border-l-2 border-amber-200 px-4 mb-4">作者：許超順 黃莞蘋<br>指導老師：林松鶴 高執貴</div>
                                 <span class="text-xs text-amber-300 underline">點擊進入查看簡報 →</span>
                             </div>
                         </div>
