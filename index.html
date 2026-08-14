@@ -52,7 +52,6 @@
                 <div class="hidden md:flex space-x-8 text-sm">
                     <a href="#home" class="hover:text-white transition">首頁</a>
                     <a href="#works" class="hover:text-white transition">專題</a>
-                    <a href="#merch" class="hover:text-white transition">周邊介紹</a>
                     <a href="#member" class="hover:text-white transition">成員</a>
                     <a href="#contact" class="hover:text-white transition">聯絡我們</a>
                 </div>
@@ -65,7 +64,6 @@
             <div id="mobile-menu" class="hidden md:hidden bg-gray-700 text-white p-4 space-y-2">
                 <a href="#home" class="menu-link block ">首頁</a>
                 <a href="#works" class="menu-link block ">專題</a>
-                <a href="#merch" class="menu-link block ">周邊介紹</a>
                 <a href="#member" class="menu-link block ">成員</a>
                 <a href="#contact" class="menu-link block ">聯絡我們</a>
             </div>
@@ -211,113 +209,6 @@
             </div>
         </section>
 
-        <section id="merch" class="py-24 bg-slate-950/50">
-            <div class="max-w-6xl mx-auto px-6"></div>
-            <h2 class="text-4xl  mb-12 font-['Zen_Kurenaido'] text-center  max-w-4xl mx-auto">周邊商品</h2>
-            <div class="mx-4">
-                <div class="grid grid-cols-1  md:grid-cols-3 gap-8">
-                    <div class="group cursor-pointer rounded-xl text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido'] bg-amber-300/20 border border-amber-200/70 p-8 hover:text-white hover:bg-white/30 hover:border-white transition hover:-translate-y-2 duration-500 transition">
-                        衣服
-                        <div x-data="carousel(['img/badge.jpg','img/bag.jpg','img/tshirt.jpg'])">
-                            <div class="mt-4 relative group overflow-hidden rounded-xl border border-amber-200/70 shadow-lg group-hover:border-white transition">
-                                <template x-for="(image, index) in images" :key="index">
-                                    <div x-show="activeSlide === index + 1">
-                                        <img :src="image"
-                                        class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-
-                                <button @click="prev()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-
-                                <button @click="next()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <div class="group flex justify-center space-x-2 mt-2">
-                                <template x-for="(image, index) in images" :key="index">
-                                    <button @click="activeSlide = index + 1"
-                                            :class="activeSlide === index + 1? 'bg-amber-200 w-6': 'bg-amber-200/30 w-2'"class="h-2 rounded-full transition-all"></button>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group cursor-pointer rounded-xl text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido'] bg-amber-300/20 border border-amber-200/70 p-8 hover:text-white hover:bg-white/30 hover:border-white transition hover:-translate-y-2 duration-500 transition">
-                        壓克力吊飾
-                        <div x-data="carousel(['img/badge.jpg','img/bag.jpg','img/tshirt.jpg'])">
-                            <div class="mt-4 relative group overflow-hidden rounded-xl border border-amber-200/70 shadow-lg group-hover:border-white transition">
-                                <template x-for="(image, index) in images" :key="index">
-                                    <div x-show="activeSlide === index + 1">
-                                        <img :src="image"
-                                        class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-
-                                <button @click="prev()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-
-                                <button @click="next()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <div class="group flex justify-center space-x-2 mt-2">
-                                <template x-for="(image, index) in images" :key="index">
-                                    <button @click="activeSlide = index + 1"
-                                            :class="activeSlide === index + 1? 'bg-amber-200 w-6': 'bg-amber-200/30 w-2'"class="h-2 rounded-full transition-all"></button>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="group cursor-pointer rounded-xl text-2xl text-amber-200 mt-2 font-['Zen_Kurenaido'] bg-amber-300/20 border border-amber-200/70 p-8 hover:text-white hover:bg-white/30 hover:border-white transition hover:-translate-y-2 duration-500 transition">
-                        金屬徽章
-                        <div x-data="carousel(['img/badge.jpg','img/bag.jpg','img/tshirt.jpg'])">
-                            <div class="mt-4 relative group overflow-hidden rounded-xl border border-amber-200/70 shadow-lg group-hover:border-white transition">
-                                <template x-for="(image, index) in images" :key="index">
-                                    <div x-show="activeSlide === index + 1">
-                                        <img :src="image"
-                                        class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-
-                                <button @click="prev()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-
-                                <button @click="next()" class="opacity-70 md:opacity-0 group-hover:opacity-100 transition absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <div class="group flex justify-center space-x-2 mt-2">
-                                <template x-for="(image, index) in images" :key="index">
-                                    <button @click="activeSlide = index + 1"
-                                            :class="activeSlide === index + 1? 'bg-amber-200 w-6': 'bg-amber-200/30 w-2'"class="h-2 rounded-full transition-all"></button>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="member" class="py-24 bg-slate-950/50">
             <div class="max-w-6xl mx-auto px-6"></div>
             <h2 class="text-4xl mb-12 font-['Zen_Kurenaido'] text-center  max-w-4xl mx-auto">關於我們</h2>
@@ -411,24 +302,6 @@
         </div>
     </section>
 
-    <script>
-        function carousel(images) {
-
-            return {
-                activeSlide: 1,
-                images,
-                get totalSlides() {
-                return this.images.length
-                },
-                next() {
-                this.activeSlide =this.activeSlide === this.totalSlides? 1: this.activeSlide + 1
-                },
-                prev() {
-                this.activeSlide =this.activeSlide === 1? this.totalSlides: this.activeSlide - 1
-                }
-            }
-        }
-    </script>
 
     <script>
         const targetDate = new Date("2026-09-04 13:00:00").getTime();
@@ -817,14 +690,14 @@
                             </div>
                             <div class="hidden md:block w-full h-[65vh] border border-green-200 bg-slate-900 rounded overflow-hidden shadow-lg">
                                 <template x-if="currentView === 'ppt1'"><iframe src="ppt/探討慢生根瘤菌與固氮螺旋菌對植物生長的影響.pdf" class="w-full h-full" allowfullscreen></iframe></template>
-                                <template x-if="currentView === 'ppt2'"><iframe src="img/bio2.pdf" class="w-full h-full" allowfullscreen></iframe></template>
+                                <template x-if="currentView === 'ppt2'"><iframe src="ppt/探討化學肥料對蚯蚓生理之影響.pdf" class="w-full h-full" allowfullscreen></iframe></template>
                             </div>
                             <div class="md:hidden w-full text-center space-y-4">
                                 <div class="relative w-full aspect-video border border-green-200/30 bg-green-900/50 rounded-lg overflow-hidden shadow-lg group">
                                     <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                                         <p class="text-green-200 text-sm mb-4"> 請點擊下方按鈕以閱讀簡報</p>
                             
-                                        <a :href="currentView === 'ppt1' ? 'ppt/探討慢生根瘤菌與固氮螺旋菌對植物生長的影響.pdf' : 'ppt/bio.pdf')" 
+                                        <a :href="currentView === 'ppt1' ? 'ppt/探討慢生根瘤菌與固氮螺旋菌對植物生長的影響.pdf' : 'ppt/探討化學肥料對蚯蚓生理之影響.pdf')" 
                                         target="_blank" 
                                             class="inline-flex items-center gap-2 px-6 py-3 bg-green-200/50 text-white font-bold rounded-lg shadow-md hover:bg-green-600 transition active:scale-95">
                                             線上閱讀簡報 ↗
